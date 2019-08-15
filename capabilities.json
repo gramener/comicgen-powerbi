@@ -1,0 +1,142 @@
+{
+    "dataRoles": [
+        {
+            "displayName": "Emotion Data",
+            "name": "emotionmeasure",
+            "kind": "Measure"
+        },
+        {
+            "displayName": "Pose Data",
+            "name": "posemeasure",
+            "kind": "Measure"
+        }
+    ],
+    "dataViewMappings":[
+        {
+            "categorical": {
+                "values": {
+                    "select": [
+                        {
+                            "bind": {
+                                "to": "posemeasure"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "emotionmeasure"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "objects": {
+        "comicPoints": {
+            "displayName": "Comic Settings",
+            "properties": {
+                "comicname": {
+                    "displayName": "Comic",
+                    "type": {
+                        "enumeration": [
+                            {
+                                "value": "dee",
+                                "displayName": "Dee"
+                            },
+                            {
+                                "value": "dey",
+                                "displayName": "Dey"
+                            }
+                        ]
+                    }
+                },
+                "comicpose": {
+                    "displayName": "Pose",
+                    "type": {
+                        "enumeration": [
+                            {
+                                "value": "datadriven",
+                                "displayName": "Data Driven"
+                            },
+                            {
+                                "value": "pointingright",
+                                "displayName": "Ponting Right"
+                            },
+                            {
+                                "value": "pointingup",
+                                "displayName": "Ponting Up"
+                            },
+                            {
+                                "value": "yuhoo",
+                                "displayName": "Yuhoo"
+                            },
+                            {
+                                "value": "superperfect",
+                                "displayName": "Super Perfect"
+                            },
+                            {
+                                "value": "holdinglaptop",
+                                "displayName": "Holding Laptop"
+                            },
+                            {
+                                "value": "angryfrustated",
+                                "displayName": "Angry Frustated"
+                            },
+                            {
+                                "value": "handsfolded",
+                                "displayName": "Hands Folded"
+                            },
+                            {
+                                "value": "handsonhip",
+                                "displayName": "Hands on Hip"
+                            },
+                            {
+                                "value": "holdingbook",
+                                "displayName": "Holding Book"
+                            },
+                            {
+                                "value": "readingpaper",
+                                "displayName": "Reading Paper"
+                            },
+                            {
+                                "value": "thumbsup",
+                                "displayName": "Thumbs Up"
+                            },
+                            {
+                                "value": "thinkinghmm",
+                                "displayName": "Thinking hmm"
+                            }
+                        ]
+                    }
+                },
+                "comicemotion": {
+                    "displayName": "Emotion",
+                    "type": {
+                        "enumeration": [
+                            {
+                                "value": "datadriven",
+                                "displayName": "Data Driven"
+                            },
+                            {
+                                "value": "normal",
+                                "displayName": "Normal"
+                            },
+                            {
+                                "value": "smile",
+                                "displayName": "Smile"
+                            },
+                            {
+                                "value": "tired",
+                                "displayName": "Tired"
+                            },
+                            {
+                                "value": "wink",
+                                "displayName": "Wink"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

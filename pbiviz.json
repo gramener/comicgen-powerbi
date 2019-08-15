@@ -1,0 +1,28 @@
+{
+    "visual": {
+        "name": "comicgen",
+        "displayName": "comicgen",
+        "guid": "comicgen8F16C30B888F41E2AE146D059FD5ACEE",
+        "visualClassName": "Visual",
+        "version": "1.0.0",
+        "description": "This is a Power-BI Plugin for comicgen library by Gramener.",
+        "supportUrl": "https://github.com/gramener/comicgen-powerbi",
+        "gitHubUrl": "https://github.com/gramener/comicgen-powerbi"
+    },
+    "apiVersion": "2.6.0",
+    "author": {
+        "name": "Nikhil Kabbin",
+        "email": "nikhil.kabbin@gramener.com"
+    },
+    "assets": {
+        "icon": "assets/icon.png"
+    },
+    "externalJS": [
+        "node_modules/comicgen/dist/comicgen.min.js",
+        "node_modules/d3/dist/d3.min.js"
+    ],
+    "style": "style/visual.less",
+    "capabilities": "capabilities.json",
+    "dependencies": null,
+    "stringResources": []
+}
