@@ -15,7 +15,6 @@ How to use:
 2. Create `Measure` for both `Emotion` and `Pose`
 3. The `Measure` should return one of the Emotion or Pose respectively. Below is an example:
 ```
-DAX
 ProfitEmotion = IF(CALCULATE(SUM([Profit]) > 60, "smile", "tired")
 
 SalesPose = IF(CALCULATE(SUM([Sales]) > 1000, "yuhoo", "angryfrustated")
