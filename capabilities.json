@@ -79,8 +79,8 @@
                                 "displayName": "Holding Laptop"
                             },
                             {
-                                "value": "angryfrustated",
-                                "displayName": "Angry Frustated"
+                                "value": "angryfrustrated",
+                                "displayName": "Angry Frustrated"
                             },
                             {
                                 "value": "handsfolded",
@@ -122,12 +122,12 @@
                                 "displayName": "Normal"
                             },
                             {
-                                "value": "smile",
-                                "displayName": "Smile"
+                                "value": "laugh",
+                                "displayName": "Laugh"
                             },
                             {
-                                "value": "tired",
-                                "displayName": "Tired"
+                                "value": "sad",
+                                "displayName": "Sad"
                             },
                             {
                                 "value": "wink",

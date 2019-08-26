@@ -2,9 +2,9 @@
     "visual": {
         "name": "comicgen",
         "displayName": "comicgen",
-        "guid": "comicgen8F16C30B888F41E2AE146D059FD5ACEE",
+        "guid": "comicgen1018F16C30B888F41E2AE146D059FD5ACEE",
         "visualClassName": "Visual",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "description": "This is a Power-BI Plugin for comicgen library by Gramener.",
         "supportUrl": "https://github.com/gramener/comicgen-powerbi",
         "gitHubUrl": "https://github.com/gramener/comicgen-powerbi"

@@ -45,6 +45,7 @@ import DataView = powerbi.DataView;
 import VisualObjectInstanceEnumerationObject = powerbi.VisualObjectInstanceEnumerationObject;
 
 import { VisualSettings } from "./settings";
+import comicMappings from "./mappings"
 export class Visual implements IVisual {
     private target: HTMLElement;
     private settings: VisualSettings;
@@ -70,15 +71,26 @@ export class Visual implements IVisual {
         var posedata = data.filter(function(d){
             return d.source.displayName == 'pose'
         })
+
+        let _comicname = this.settings.comicPoints.comicname
+
         var posevalue = this.settings.comicPoints.comicpose;
-        var pose_value = posevalue != 'datadriven' ? posevalue : posedata[0].values[0]
+        if(posedata){
+            var pose_value = posevalue != 'datadriven' ? posevalue : posedata[0].values[0]
+        } else {
+            pose_value = 'handsfolded'
+        }
 
         var emotionvalue = this.settings.comicPoints.comicemotion;
-        var emotion_value = emotionvalue != 'datadriven' ? emotionvalue : emotiondata[0].values[0]
+        if(emotiondata){
+            var emotion_value = emotionvalue != 'datadriven' ? emotionvalue : emotiondata[0].values[0]
+        } else {
+            emotion_value = 'normal'
+        }
 
         comicgen('.newcomic', {
-            name: this.settings.comicPoints.comicname,
-            emotion: emotion_value,
+            name: _comicname,
+            emotion: comicMappings[_comicname][`emotion_${emotion_value}`],
             pose: pose_value,
             angle: 'straight',
             width: this.target.clientHeight / 1.5,
