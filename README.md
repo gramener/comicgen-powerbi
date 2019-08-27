@@ -27,8 +27,8 @@ SalesPose = IF(CALCULATE(SUM([Sales]) > 1000, "yuhoo", "angryfrustated")
 Emotions:
 ------------------------------------
 - Normal
-- Smile
-- Tired
+- Laugh
+- Sad
 - Wink
 
 Poses:
@@ -53,7 +53,7 @@ TODO:
 - [ ] Add test cases and code review
 - [ ] Release it marketplace
 - [ ] Add more comics.
-- [ ] Add more Emotions and Poses. 
+- [ ] Add more Emotions and Poses.
 - [ ] Improve Data binding step.
 
 
