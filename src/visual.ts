@@ -66,10 +66,10 @@ export class Visual implements IVisual {
         // console.log('Visual update', options);
         var data = options.dataViews[0].categorical.values;
         var emotiondata = data.filter(function(d){
-            return d.source.displayName == 'emotion'
+            return d.source.roles.emotionmeasure;
         })
         var posedata = data.filter(function(d){
-            return d.source.displayName == 'pose'
+            return d.source.roles.posemeasure
         })
 
         let _comicname = this.settings.comicPoints.comicname
@@ -87,6 +87,7 @@ export class Visual implements IVisual {
         } else {
             emotion_value = 'normal'
         }
+        console.log(_comicname)
 
         comicgen('.newcomic', {
             name: _comicname,
