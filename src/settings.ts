@@ -40,5 +40,7 @@ export class comicSettings {
     public comicpose: string = "holdingbook";
     // Default Emotion
     public comicemotion: string = "normal";
+    // Default Mirror
+    public comicmirror: string = ""
 }
 

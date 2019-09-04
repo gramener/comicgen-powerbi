@@ -135,6 +135,21 @@
                             }
                         ]
                     }
+                },
+                "comicmirror": {
+                    "displayName": "Mirror",
+                    "type": {
+                        "enumeration": [
+                            {
+                                "value": "",
+                                "displayName": "Regular"
+                            },
+                            {
+                                "value": "1",
+                                "displayName": "Mirror"
+                            }
+                        ]
+                    }
                 }
             }
         }

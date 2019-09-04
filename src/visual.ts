@@ -87,13 +87,13 @@ export class Visual implements IVisual {
         } else {
             emotion_value = 'normal'
         }
-        console.log(_comicname)
 
         comicgen('.newcomic', {
             name: _comicname,
             emotion: comicMappings[_comicname][`emotion_${emotion_value}`],
             pose: pose_value,
             angle: 'straight',
+            mirror: this.settings.comicPoints.comicmirror,
             width: this.target.clientHeight / 1.5,
             height: this.target.clientHeight
         })
