@@ -1,18 +1,18 @@
 {
     "visual": {
         "name": "comicgen",
-        "displayName": "comicgen",
+        "displayName": "Comicgen",
         "guid": "comicgen1038F16C30B888F41E2AE146D059FD5ACEE",
         "visualClassName": "Visual",
-        "version": "1.0.3",
-        "description": "This is a Power-BI Plugin for comicgen library by Gramener.",
-        "supportUrl": "https://github.com/gramener/comicgen-powerbi",
+        "version": "1.0.4",
+        "description": "Comicgen adds comic characters whose emotion, pose, angle, etc can be controlled by data. This helps convey the right emotion and increase engagement.",
+        "supportUrl": "https://github.com/gramener/comicgen-powerbi/issues",
         "gitHubUrl": "https://github.com/gramener/comicgen-powerbi"
     },
     "apiVersion": "2.6.0",
     "author": {
-        "name": "Nikhil Kabbin",
-        "email": "nikhil.kabbin@gramener.com"
+        "name": "Gramener",
+        "email": "comicgen.powerbi@gramener.com"
     },
     "assets": {
         "icon": "assets/icon.png"
