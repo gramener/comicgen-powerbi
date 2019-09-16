@@ -1,5 +1,24 @@
 {
-  "name": "visual",
+  "name": "comicgen-powerbi",
+  "version": "1.0.4",
+  "description": "TBD",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gramener/comicgen-powerbi.git"
+  },
+  "keywords": [
+    "comicgen",
+    "powerbi-visuals",
+  ],
+  "author": {
+    "name": "Gramener",
+    "email": "comicgen.powerbi@gramener.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gramener/comicgen-powerbi/issues"
+  },
+  "homepage": "https://github.com/gramener/comicgen-powerbi#readme",
   "scripts": {
     "pbiviz": "pbiviz",
     "start": "pbiviz start",
