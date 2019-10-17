@@ -31,6 +31,9 @@ The list of emotions are:
 - laugh
 - sad
 - wink
+- angry
+- worried
+- surprised
 
 The list of poses are:
 
