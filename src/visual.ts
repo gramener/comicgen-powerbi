@@ -50,48 +50,83 @@ export class Visual implements IVisual {
     private target: HTMLElement;
     private settings: VisualSettings;
     private root: Selection<any>;
+    private textNode: Text;
 
     constructor(options: VisualConstructorOptions) {
-        console.log('Visual constructor', options);
+        // console.log('Visual constructor', options);
         this.target = options.element;
         // comicgen.base = "https://unpkg.com/comicgen"
         if (typeof document !== "undefined") {
             let root: Selection<any> = this.root = d3.select(this.target);
             this.root.append("g").attr("class", "newcomic")
+
+            const new_p: HTMLElement = document.createElement("a");
+            const attHref = document.createAttribute("href");
+            const attTarget = document.createAttribute("target");
+            attHref.value = "https://github.com/gramener/comicgen-powerbi/blob/master/README.md#usage";
+            attTarget.value = "_blank"
+            this.textNode = document.createTextNode("");
+            new_p.setAttributeNode(attHref);
+            new_p.setAttributeNode(attTarget);
+            new_p.appendChild(this.textNode);
+            this.target.appendChild(new_p);
         }
+    }
+
+    private validate(data){
+        var res = {
+            comicname: this.settings.comicPoints.comicname,
+            emotion: 'normal', pose: 'handsfolded',
+            error: false, message: 'success'
+        }
+        var mapSettings = {
+            emotion: this.settings.comicPoints.comicemotion,
+            pose: this.settings.comicPoints.comicpose,
+        }
+        var measures = ['pose', 'emotion']
+
+        measures.forEach(function(m){
+            var datapoint = data.filter(function(d){
+                return d.source.roles[`${m}measure`]
+            })
+            if(mapSettings[m] == 'datadriven') {
+                if(datapoint.length) {
+                    var val = datapoint[0].values[0].toString().toLowerCase()
+                    if(comicMappings[res.comicname][`${m}_${val}`] !== undefined) {
+                        res[m] = val
+                    } else {
+                        res.error = true,
+                        res.message = 'Invalid Emotion/Pose value in the measure, Please see usage'
+                    }
+                } else {
+                    res.error = true
+                    res.message = 'Emotion/Pose data field is empty, Please see usage'
+                }
+            } else {
+                res[m] = mapSettings[m]
+            }
+        })
+        return res
     }
 
     public update(options: VisualUpdateOptions) {
         this.settings = Visual.parseSettings(options && options.dataViews && options.dataViews[0]);
         // console.log('Visual update', options);
         var data = options.dataViews[0].categorical.values;
-        var emotiondata = data.filter(function(d){
-            return d.source.roles.emotionmeasure;
-        })
-        var posedata = data.filter(function(d){
-            return d.source.roles.posemeasure
-        })
+        var getComic = this.validate(data)
 
-        let _comicname = this.settings.comicPoints.comicname
-
-        var posevalue = this.settings.comicPoints.comicpose;
-        if(posedata){
-            var pose_value = posevalue != 'datadriven' ? posevalue : posedata[0].values[0]
+        if(getComic.error) {
+            this.textNode.textContent = (getComic.message);
+            d3.select('.newcomic').style("display", "none")
         } else {
-            pose_value = 'handsfolded'
-        }
-
-        var emotionvalue = this.settings.comicPoints.comicemotion;
-        if(emotiondata){
-            var emotion_value = emotionvalue != 'datadriven' ? emotionvalue : emotiondata[0].values[0]
-        } else {
-            emotion_value = 'normal'
+            d3.select('.newcomic').style("display", "block")
+            this.root.attr('title', "Emotion: " + getComic.emotion  + ", Pose: " + getComic.pose)
         }
 
         comicgen('.newcomic', {
-            name: _comicname,
-            emotion: comicMappings[_comicname][`emotion_${emotion_value}`],
-            pose: pose_value,
+            name: getComic.comicname,
+            emotion: comicMappings[getComic.comicname][`emotion_${getComic.emotion}`],
+            pose: comicMappings[getComic.comicname][`pose_${getComic.pose}`],
             angle: 'straight',
             mirror: this.settings.comicPoints.comicmirror,
             width: this.target.clientHeight / 1.5,

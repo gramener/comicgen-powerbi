@@ -37,7 +37,7 @@ export class comicSettings {
     // Default comic
     public comicname: string = "dey";
     // Default Pose
-    public comicpose: string = "holdingbook";
+    public comicpose: string = "handsfolded";
     // Default Emotion
     public comicemotion: string = "normal";
     // Default Mirror
