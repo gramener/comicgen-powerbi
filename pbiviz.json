@@ -2,7 +2,7 @@
     "visual": {
         "name": "comicgen",
         "displayName": "Comicgen",
-        "guid": "comicgen1068F16C30B888F41E2AE146D059FD5ACEE",
+        "guid": "comicgen1058F16C30B888F41E2AE146D059FD5ACEE",
         "visualClassName": "Visual",
         "version": "1.0.7",
         "description": "Comicgen adds comic characters whose emotion, pose, angle, etc can be controlled by data. This helps convey the right emotion and increase engagement.",
