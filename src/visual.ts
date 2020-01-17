@@ -60,14 +60,14 @@ export class Visual implements IVisual {
             let root: Selection<any> = this.root = d3.select(this.target);
             this.root.append("g").attr("class", "newcomic")
 
-            const new_p: HTMLElement = document.createElement("a");
-            const attHref = document.createAttribute("href");
-            const attTarget = document.createAttribute("target");
-            attHref.value = "https://github.com/gramener/comicgen-powerbi/blob/master/README.md#usage";
-            attTarget.value = "_blank"
+            const new_p: HTMLElement = document.createElement("p");
+            // const attHref = document.createAttribute("href");
+            // const attTarget = document.createAttribute("target");
+            // attHref.value = "https://github.com/gramener/comicgen-powerbi/blob/master/README.md#usage";
+            // attTarget.value = "_blank"
             this.textNode = document.createTextNode("");
-            new_p.setAttributeNode(attHref);
-            new_p.setAttributeNode(attTarget);
+            // new_p.setAttributeNode(attHref);
+            // new_p.setAttributeNode(attTarget);
             new_p.appendChild(this.textNode);
             this.target.appendChild(new_p);
         }
@@ -96,11 +96,11 @@ export class Visual implements IVisual {
                         res[m] = val
                     } else {
                         res.error = true,
-                        res.message = 'Invalid Emotion/Pose value in the measure, Please see usage'
+                        res.message = 'Invalid Emotion/Pose value in the measure.'
                     }
                 } else {
                     res.error = true
-                    res.message = 'Emotion/Pose data field is empty, Please see usage'
+                    res.message = 'Emotion/Pose data field is empty.'
                 }
             } else {
                 res[m] = mapSettings[m]
