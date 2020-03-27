@@ -51,7 +51,7 @@ The list of poses are:
 - thinkinghmm
 
 ## Examples:
-- [Sales](https://github.com/gramener/comicgen-powerbi/tree/master/examples/sales.pbix)
+- [Sales](https://github.com/gramener/comicgen-powerbi/blob/master/examples/Sales.pbix)
 
 ## Dev Setup
 
