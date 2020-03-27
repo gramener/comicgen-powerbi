@@ -50,6 +50,9 @@ The list of poses are:
 - thumbsup
 - thinkinghmm
 
+## Examples:
+- [Sales](https://github.com/gramener/comicgen-powerbi/tree/master/examples/sales.pbix)
+
 ## Dev Setup
 
 1. Clone this repository
