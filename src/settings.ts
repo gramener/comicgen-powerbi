@@ -41,6 +41,8 @@ export class comicSettings {
     // Default Emotion
     public comicemotion: string = "normal";
     // Default Mirror
-    public comicmirror: string = ""
+    public comicmirror: string = "";
+    // Default Emotion Only
+    public emotiononly: string = "false";
 }
 

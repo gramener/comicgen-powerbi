@@ -77,6 +77,7 @@ export class Visual implements IVisual {
         var res = {
             comicname: this.settings.comicPoints.comicname,
             emotion: 'normal', pose: 'handsfolded',
+            onlyface: this.settings.comicPoints.emotiononly,
             error: false, message: 'success'
         }
         var mapSettings = {
@@ -123,15 +124,20 @@ export class Visual implements IVisual {
             this.root.attr('title', "Emotion: " + getComic.emotion  + ", Pose: " + getComic.pose)
         }
 
-        comicgen('.newcomic', {
+
+        var comicAttributes = {
             name: getComic.comicname,
             emotion: comicMappings[getComic.comicname][`emotion_${getComic.emotion}`],
-            pose: comicMappings[getComic.comicname][`pose_${getComic.pose}`],
             angle: 'straight',
             mirror: this.settings.comicPoints.comicmirror,
             width: this.target.clientHeight / 1.5,
             height: this.target.clientHeight
-        })
+        }
+
+        if(getComic.onlyface == "false")
+            comicAttributes['pose'] = comicMappings[getComic.comicname][`pose_${getComic.pose}`]
+
+        comicgen('.newcomic', comicAttributes)
     }
 
     private static parseSettings(dataView: DataView): VisualSettings {

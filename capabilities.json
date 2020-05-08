@@ -160,6 +160,21 @@
                         ]
                     }
                 },
+                "emotiononly": {
+                    "displayName": "Only Face",
+                    "type": {
+                        "enumeration": [
+                            {
+                                "value": "true",
+                                "displayName": "True"
+                            },
+                            {
+                                "value": "false",
+                                "displayName": "False"
+                            }
+                        ]
+                    }
+                },
                 "comicmirror": {
                     "displayName": "Mirror",
                     "type": {
