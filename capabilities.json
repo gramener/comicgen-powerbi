@@ -52,12 +52,32 @@
                     "type": {
                         "enumeration": [
                             {
+                                "value": "ava",
+                                "displayName": "Ava"
+                            },
+                            {
+                                "value": "bean",
+                                "displayName": "Bean"
+                            },
+                            {
+                                "value": "evan",
+                                "displayName": "Evan"
+                            },
+                            {
                                 "value": "dee",
                                 "displayName": "Dee"
                             },
                             {
                                 "value": "dey",
                                 "displayName": "Dey"
+                            },
+                            {
+                                "value": "priya",
+                                "displayName": "Priya"
+                            },
+                            {
+                                "value": "ringo",
+                                "displayName": "Ringo"
                             }
                         ]
                     }
