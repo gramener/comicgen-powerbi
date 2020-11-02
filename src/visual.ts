@@ -73,7 +73,7 @@ export class Visual implements IVisual {
         }
     }
 
-    private validate(data){
+    private validate(data) {
         var res = {
             comicname: this.settings.comicPoints.comicname,
             emotion: 'normal', pose: 'handsfolded',
@@ -90,18 +90,18 @@ export class Visual implements IVisual {
         }
         var measures = ['pose', 'emotion']
 
-        measures.forEach(function(m){
-            var datapoint = data.filter(function(d){
+        measures.forEach(function (m) {
+            var datapoint = data.filter(function (d) {
                 return d.source.roles[`${m}measure`]
             })
-            if(mapSettings[m] == 'datadriven') {
-                if(datapoint.length) {
+            if (mapSettings[m] == 'datadriven') {
+                if (datapoint.length) {
                     var val = datapoint[0].values[0].toString().toLowerCase()
-                    if(comicMappings[res.comicname][`${m}_${val}`] !== undefined) {
+                    if (comicMappings[res.comicname][`${m}_${val}`] !== undefined) {
                         res[m] = val
                     } else {
                         res.error = true,
-                        res.message = 'Invalid Emotion/Pose value in the measure.'
+                            res.message = 'Invalid Emotion/Pose value in the measure.'
                     }
                 } else {
                     res.error = true
@@ -129,12 +129,12 @@ export class Visual implements IVisual {
         var data = options.dataViews[0].categorical.values;
         var getComic = this.validate(data)
 
-        if(getComic.error) {
+        if (getComic.error) {
             this.textNode.textContent = (getComic.message);
             d3.select('.newcomic').style("display", "none")
         } else {
             d3.select('.newcomic').style("display", "block")
-            this.root.attr('title', "Emotion: " + getComic.emotion  + ", Pose: " + getComic.pose)
+            this.root.attr('title', "Emotion: " + getComic.emotion + ", Pose: " + getComic.pose)
         }
 
         var comicAttributes = {
@@ -146,12 +146,12 @@ export class Visual implements IVisual {
             height: this.target.clientHeight,
             scale: null,
             x: 0,
-            y:0
+            y: 0
         }
-        if(getComic.onlyface == "false")
+        if (getComic.onlyface == "false")
             comicAttributes['pose'] = comicMappings[getComic.comicname][`pose_${getComic.pose}`]
-        if(this.settings.comicPoints.comiczoom !=0){
-         comicAttributes['scale'] = this.settings.comicPoints.comiczoom / 10
+        if (this.settings.comicPoints.comiczoom != 0) {
+            comicAttributes['scale'] = this.settings.comicPoints.comiczoom / 10
         }
         comicAttributes['x'] = this.settings.comicPoints.comicxscale
         comicAttributes['y'] = this.settings.comicPoints.comicyscale
