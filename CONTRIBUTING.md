@@ -12,14 +12,15 @@ feature you would like to contribute.
 - Update `pbiviz.json`
   - Increment `visual.version`
   - Update any `externalJS` files required
-  - Ensure that `visual.guid` is unchanged
+  - Ensure that `visual.guid` is unchanged.
     (When testing locally, this must be changed to refresh on Power BI)
 - Update `README.md`
   - Add changes clearly to the "Change log" section
 - Run `pbiviz package` to create `dist/comicgen<guid>.<version>.pbiviz` and `dist/package.json`
 - Open `assets/sample.pbix` and update the visual
 
-Email pbivizsubmit@microsoft.com, attaching: `dist/comicgen<guid>.<version>.pbiviz` and `assets/sample.pbix`:
+Email pbivizsubmit@microsoft.com, cc: comicgen.powerbi@gramener.com, attaching:
+`dist/comicgen<guid>.<version>.pbiviz` and `assets/sample.pbix`:
 
 > Dear Power BI Team,
 >
@@ -36,9 +37,11 @@ Email pbivizsubmit@microsoft.com, attaching: `dist/comicgen<guid>.<version>.pbiv
 > As per the guidelines, we've attached the .pbix and .pbiviz files to be uploaded on the public
 > share server before submitting it to the App Source.
 
-- Upload the provided XML into https://partner.microsoft.com. Log in as gramener@outlook.com
-  - Note: This may take up to a week. Check gramener@outlook.com. Follow-up
-  - Once certified, they'll publish within a few hours
+Once they share an XML file, upload  into https://partner.microsoft.com.
+
+- Log in as gramener@outlook.com
+- This may take up to a week. Check gramener@outlook.com. Follow-up
+- Once certified, they'll publish within a few hours
 
 
 TODO:
