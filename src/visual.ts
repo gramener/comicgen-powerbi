@@ -78,6 +78,10 @@ export class Visual implements IVisual {
             comicname: this.settings.comicPoints.comicname,
             emotion: 'normal', pose: 'handsfolded',
             onlyface: this.settings.comicPoints.emotiononly,
+            comicheight: this.settings.comicPoints.comiczoom,
+            comicwidth: this.settings.comicPoints.comicwidth,
+            xscale: this.settings.comicPoints.comicxscale,
+            yscale: this.settings.comicPoints.comicyscale,
             error: false, message: 'success'
         }
         var mapSettings = {
@@ -110,6 +114,15 @@ export class Visual implements IVisual {
         return res
     }
 
+    /**
+     * This function gets called for each of the objects defined in the capabilities files and allows you to select which of the
+     * objects and properties you want to expose to the users in the property pane.
+     *
+     */
+    public enumerateObjectInstances(options: EnumerateVisualObjectInstancesOptions): VisualObjectInstance[] | VisualObjectInstanceEnumerationObject {
+        return VisualSettings.enumerateObjectInstances(this.settings || VisualSettings.getDefault(), options);
+    }
+
     public update(options: VisualUpdateOptions) {
         this.settings = Visual.parseSettings(options && options.dataViews && options.dataViews[0]);
         // console.log('Visual update', options);
@@ -124,32 +137,30 @@ export class Visual implements IVisual {
             this.root.attr('title', "Emotion: " + getComic.emotion  + ", Pose: " + getComic.pose)
         }
 
-
         var comicAttributes = {
             name: getComic.comicname,
             emotion: comicMappings[getComic.comicname][`emotion_${getComic.emotion}`],
             angle: 'straight',
             mirror: this.settings.comicPoints.comicmirror,
             width: this.target.clientHeight / 1.5,
-            height: this.target.clientHeight
+            height: this.target.clientHeight,
+            scale: null,
+            x: 0,
+            y:0
         }
-
         if(getComic.onlyface == "false")
             comicAttributes['pose'] = comicMappings[getComic.comicname][`pose_${getComic.pose}`]
+        if(this.settings.comicPoints.comiczoom !=0){
+         comicAttributes['scale'] = this.settings.comicPoints.comiczoom / 10
+        }
+        comicAttributes['x'] = this.settings.comicPoints.comicxscale
+        comicAttributes['y'] = this.settings.comicPoints.comicyscale
+        comicAttributes['width'] = this.settings.comicPoints.comicwidth
 
         comicgen('.newcomic', comicAttributes)
     }
 
     private static parseSettings(dataView: DataView): VisualSettings {
         return VisualSettings.parse(dataView) as VisualSettings;
-    }
-
-    /**
-     * This function gets called for each of the objects defined in the capabilities files and allows you to select which of the
-     * objects and properties you want to expose to the users in the property pane.
-     *
-     */
-    public enumerateObjectInstances(options: EnumerateVisualObjectInstancesOptions): VisualObjectInstance[] | VisualObjectInstanceEnumerationObject {
-        return VisualSettings.enumerateObjectInstances(this.settings || VisualSettings.getDefault(), options);
     }
 }
