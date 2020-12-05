@@ -194,7 +194,7 @@ export class Visual implements IVisual {
         document.body.classList.add("bgColor")
         return node;
     }
-
+  
     // Landing page
     private HandleLandingPage(options: VisualUpdateOptions) {
         if(!options.dataViews || !options.dataViews.length) {
