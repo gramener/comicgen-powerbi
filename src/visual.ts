@@ -43,18 +43,26 @@ import EnumerateVisualObjectInstancesOptions = powerbi.EnumerateVisualObjectInst
 import VisualObjectInstance = powerbi.VisualObjectInstance;
 import DataView = powerbi.DataView;
 import VisualObjectInstanceEnumerationObject = powerbi.VisualObjectInstanceEnumerationObject;
+import ISelectionManager = powerbi.extensibility.ISelectionManager;
 
 import { VisualSettings } from "./settings";
 import comicMappings from "./mappings"
+
+
 export class Visual implements IVisual {
     private target: HTMLElement;
     private settings: VisualSettings;
     private root: Selection<any>;
     private textNode: Text;
+    private selectionManager: ISelectionManager;
+    private isLandingPageOn: boolean;
+    private LandingPageRemoved: boolean;
+    private LandingPage: Selection<any>;
 
     constructor(options: VisualConstructorOptions) {
-        // console.log('Visual constructor', options);
         this.target = options.element;
+        
+        this.selectionManager = options.host.createSelectionManager()
         // comicgen.base = "https://unpkg.com/comicgen"
         if (typeof document !== "undefined") {
             let root: Selection<any> = this.root = d3.select(this.target);
@@ -124,8 +132,8 @@ export class Visual implements IVisual {
     }
 
     public update(options: VisualUpdateOptions) {
+        this.HandleLandingPage(options);
         this.settings = Visual.parseSettings(options && options.dataViews && options.dataViews[0]);
-        // console.log('Visual update', options);
         var data = options.dataViews[0].categorical.values;
         var getComic = this.validate(data)
 
@@ -158,6 +166,51 @@ export class Visual implements IVisual {
         comicAttributes['width'] = this.settings.comicPoints.comicwidth
 
         comicgen('.newcomic', comicAttributes)
+        
+        // Handle context menu
+        this.root.on("contextmenu",() => {
+            const mouseEvent: MouseEvent = d3.event as MouseEvent;
+            const eventTarget: EventTarget = mouseEvent.target;
+            
+            this.selectionManager.showContextMenu( {}, {
+                x: mouseEvent.clientX,
+                y: mouseEvent.clientY
+            });
+            mouseEvent.preventDefault();
+        });
+    }
+
+    //landing page content
+    private createLandingPage(){
+        const node = document.createElement("div")
+        const loginhtml = "<h3>Welcome to Comicgen!</h3>"+
+        "<h5>With Comicgen, you can create comic storyboards to present insights.</h5>" +
+        "<lable>To create a comic storyboard, follow the below steps:</lable><ul>" +
+        "<li>1) Select a character from the Comicgen library.</li>" +
+        "<li>2) Create a new measure to determine the emotion of the character.</li>" +
+        "<li>3) Choose an appropriate pose for the selected character. If needed you can alter the pose too based on data by creating a new measures</li></ul>" +
+        "<h5>Note: You can also place more than one character on the dashboard to communicate different messages.</h5>";
+        node.innerHTML = loginhtml;
+        document.body.classList.add("bgColor")
+        return node;
+    }
+  
+    // Landing page
+    private HandleLandingPage(options: VisualUpdateOptions) {
+        if(!options.dataViews || !options.dataViews.length) {
+            if(!this.isLandingPageOn) {
+                this.isLandingPageOn = true;
+                const SampleLandingPage: Element = this.createLandingPage(); //create a landing page
+                this.target.appendChild(SampleLandingPage);
+                this.LandingPage = d3.select(SampleLandingPage);
+            }
+
+        } else {
+                if(this.isLandingPageOn && !this.LandingPageRemoved){
+                    this.LandingPageRemoved = true;
+                    this.LandingPage.remove();
+                }
+        }
     }
 
     private static parseSettings(dataView: DataView): VisualSettings {
