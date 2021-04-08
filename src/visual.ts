@@ -29,7 +29,7 @@
 import * as d3 from "d3";
 
 //comicgen
-import * as comicgen from "comicgen";
+// import * as comicgen from "comicgen";
 
 type Selection<T> = d3.Selection<any, T, any, any>;
 
@@ -47,7 +47,7 @@ import ISelectionManager = powerbi.extensibility.ISelectionManager;
 
 import { VisualSettings } from "./settings";
 import comicMappings from "./mappings"
-
+const comic = require('comicgen/src/comic')(require('../node_modules/comicgen/src/fsjson'))
 
 export class Visual implements IVisual {
     private target: HTMLElement;
@@ -66,7 +66,8 @@ export class Visual implements IVisual {
         // comicgen.base = "https://unpkg.com/comicgen"
         if (typeof document !== "undefined") {
             let root: Selection<any> = this.root = d3.select(this.target);
-            this.root.append("g").attr("class", "newcomic")
+            // this.root.append("g").attr("class", "newcomic")
+            this.root.append("div").attr("class", "target")
 
             const new_p: HTMLElement = document.createElement("p");
             // const attHref = document.createAttribute("href");
@@ -156,6 +157,7 @@ export class Visual implements IVisual {
             x: 0,
             y: 0
         }
+        
         if (getComic.onlyface == "false")
             comicAttributes['pose'] = comicMappings[getComic.comicname][`pose_${getComic.pose}`]
         if (this.settings.comicPoints.comiczoom != 0) {
@@ -165,7 +167,9 @@ export class Visual implements IVisual {
         comicAttributes['y'] = this.settings.comicPoints.comicyscale
         comicAttributes['width'] = this.settings.comicPoints.comicwidth
 
-        comicgen('.newcomic', comicAttributes)
+        const character = document.createElement("div")
+        character.innerHTML = comic(comicAttributes)
+        document.getElementsByClassName('target')[0].innerHTML = character.innerHTML
         
         // Handle context menu
         this.root.on("contextmenu",() => {
