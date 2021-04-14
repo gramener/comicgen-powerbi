@@ -59,6 +59,10 @@ The list of poses are:
 2. Install JS modules Run `npm install`
 3. Start Server `pbiviz start`
 
+## Change log
+
+- 1.2.0: Add controls for position, `x`, `y`, `zoom` and `width`, to show any portion of a character (e.g. just the face)
+
 ## Notes
 
 - License: [MIT](https://opensource.org/licenses/MIT)

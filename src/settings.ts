@@ -44,5 +44,13 @@ export class comicSettings {
     public comicmirror: string = "";
     // Default Emotion Only
     public emotiononly: string = "false";
+    // Default Comic zoom
+    public comiczoom: number = 10;
+    // Default Comic xscale
+    public comicxscale: number = 0;
+    // Default Comic yscale
+    public comicyscale: number = 0;
+    // Default Comic width
+    public comicwidth: number = 100;
 }
 

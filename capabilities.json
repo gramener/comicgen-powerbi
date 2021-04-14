@@ -11,6 +11,7 @@
             "kind": "Measure"
         }
     ],
+    "supportsLandingPage": true,
     "dataViewMappings":[
         {
             "conditions": [
@@ -179,6 +180,22 @@
                             }
                         ]
                     }
+                },
+                "comiczoom": {
+                    "displayName": "Zoom",
+                    "type": {"numeric": true}
+                },
+                "comicwidth": {
+                    "displayName": "width",
+                    "type": {"numeric": true}
+                },
+                "comicxscale": {
+                    "displayName": "X (Allows +ve and -ve)",
+                    "type": {"numeric": true}
+                },
+                "comicyscale": {
+                    "displayName": "Y (Allows +ve and -ve)",
+                    "type": {"numeric": true}
                 },
                 "emotiononly": {
                     "displayName": "Only Face",
